@@ -54,8 +54,10 @@ const SignInCard: React.FC<SignInCardProps> = ({
                 onSignIn(response);
             }
         } catch (error: unknown) {
-            const errorMessage = error instanceof Error ? error?.response?.data?.message : 'Sign in failed';
-            setApiError(errorMessage);
+            const errorMessage = error instanceof Error
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                ? (error as any)?.response?.data?.message || error.message
+                : 'Sign in failed'; setApiError(errorMessage);
 
             if (onError) {
                 onError(errorMessage);
