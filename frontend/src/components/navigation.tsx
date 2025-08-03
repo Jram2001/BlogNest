@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { logout } from '../services/auth-service';
 
 type NavigationProps = {
     isLoading?: boolean;
@@ -27,7 +28,13 @@ const Navigation: React.FC<NavigationProps> = ({
     /**
      * Handles user logout by clearing storage and redirecting to home
      */
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        try {
+            const response = await logout();
+            console.log(response)
+        } catch (err) {
+            console.log(err, 'there is an error')
+        }
         localStorage.clear();
         navigate('/');
     };

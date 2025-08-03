@@ -10,8 +10,7 @@ router.post('/login', authController.signIn);
 
 // Protected routes
 router.post('/logout', authenticateToken, async (req, res) => {
-    const userId = req.user.id;
-    await deleteRefreshToken(userId);
+    const { id } = req.body;
     res.status(200).json({ message: 'Logged out successfully' });
 });
 router.get('/getone', authenticateToken, authController.getUserById);

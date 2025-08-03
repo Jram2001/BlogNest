@@ -27,8 +27,9 @@ export const signUp = async (credentials: SignUpCredentials): Promise<RawSignInR
  * Registers new user account
  */
 export const logout = async () => {
+    console.log('logged out');
     return httpPost(
-        `${BASE_URL}/logout`, {}
+        `${BASE_URL}/logout`, { id: localStorage.getItem('token') }
     );
 };
 

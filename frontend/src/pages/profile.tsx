@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import UserCard from "../components/user-card";
-import { getOneUser } from "../services/auth-service";
+import { getOneUser, logout } from "../services/auth-service";
 import type { IUser } from "../services/auth-interface";
 import BlogListing from "../components/blog-editor/blog-listing";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,8 @@ const Profile: React.FC = () => {
     /**
      * Fuction used to clear local storage and logout user.
      */
-    const onButtonClick = () => {
+    const onButtonClick = async () => {
+        await logout();
         localStorage.clear();
         navigate('/')
     }
