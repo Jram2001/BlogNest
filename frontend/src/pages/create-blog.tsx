@@ -9,12 +9,19 @@ import type { Blog } from '../services/blog-interface';
 import { useParams } from 'react-router-dom';
 import { createBlog, getBlogById, updateBlog } from '../services/blog-service';
 import type { BlogData } from '../schema/authentication-schema';
+import { useSnackBar } from '../context/snackbar-context';
 
 type BlogEditorProps = {
     blogData?: Blog
 };
 
 const BlogEditor: React.FC<BlogEditorProps> = () => {
+
+    /**
+     * Snackbar context for displaying notifications.
+     */
+    const { showSnackbar } = useSnackBar();
+
     /**
      * Blog if fetched from route param.
      * @type {string}
@@ -134,10 +141,13 @@ const BlogEditor: React.FC<BlogEditorProps> = () => {
             const response = id
                 ? await updateBlog(id, blogData)
                 : await createBlog(blogData);
+            showSnackbar({ message: `Blog created sucessfully`, variation: 'sucess' });
+
 
             return response;
         } catch (error) {
             console.error('Publishing error:', error);
+            showSnackbar({ message: `Blog creation failed`, variation: 'sucess' });
         } finally {
             setIsPublishing(false);
         }

@@ -8,7 +8,7 @@ const BASE_URL = '/auth';
  */
 export const signIn = async (credentials: SignInCredentials): Promise<RawSignInResponse> => {
     return httpPost<RawSignInResponse, SignInCredentials>(
-        `${BASE_URL}/signin`,
+        `${BASE_URL}/login`,
         credentials
     );
 };
@@ -18,8 +18,17 @@ export const signIn = async (credentials: SignInCredentials): Promise<RawSignInR
  */
 export const signUp = async (credentials: SignUpCredentials): Promise<RawSignInResponse> => {
     return httpPost<RawSignInResponse, SignUpCredentials>(
-        `${BASE_URL}/signup`,
+        `${BASE_URL}/register`,
         credentials
+    );
+};
+
+/**
+ * Registers new user account
+ */
+export const logout = async () => {
+    return httpPost(
+        `${BASE_URL}/logout`, {}
     );
 };
 

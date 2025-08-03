@@ -1,8 +1,8 @@
 import Axios, { AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 
 const apiClient = Axios.create({
-    baseURL: 'https://blognest-jm20.onrender.com/',
-    timeout: 50000,
+    baseURL: 'http://localhost:3000/api',
+    timeout: 5000,
     headers: {
         'Content-Type': 'application/json'
     }
