@@ -85,7 +85,7 @@ JWT_SECRET=your-super-secure-jwt-secret-key-here
 
 1. In the `backend` folder, start the development server:
    ```bash
-   npm run dev
+   npm run start
    ```
 
 2. The backend server should now be running, typically accessible at `http://localhost:5000` (or the port specified in your configuration).
