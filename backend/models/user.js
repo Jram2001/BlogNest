@@ -63,6 +63,18 @@ UserSchema.pre('save', async function (next) {
         next(error);
     }
 });
+
+/**
+ * Password Comparison Method
+ * 
+ * Purpose: Compares plain text password with hashed password for authentication
+ * Created by: Jayaram
+ * Created on: August 1, 2025
+ */
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+};
+
 /**
  * Secure JSON Serialization Method
  * 
