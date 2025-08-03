@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBlogById } from '../services/blog-service';
+import type { Blog } from '../services/blog-interface';
 
 interface EditorBlog {
     _id?: string;
@@ -13,7 +14,7 @@ interface EditorBlog {
 }
 
 type BlogViewProps = {
-    blogData: EditorBlog;
+    blogData: Blog;
     mode?: 'preview' | 'view';
     onBack?: () => void;
     onEdit?: () => void;
@@ -29,7 +30,6 @@ const BlogView: React.FC<BlogViewProps> = ({
     onEdit,
     onPublish,
     showActions = true,
-    authorName
 }) => {
     /**
      * Blog if fetched from route param
@@ -190,7 +190,7 @@ const BlogView: React.FC<BlogViewProps> = ({
                         <p className="text-gray-500 text-sm">
                             {isPreviewMode ? 'Published by' : 'By'}{' '}
                             <span className="text-gray-400 font-medium">
-                                {authorName || 'Author Name'}
+                                {blogData.userID.username || 'Author Name'}
                             </span>
                         </p>
                     </div>
